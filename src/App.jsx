@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+// src/App.jsx
+import React from "react";
+import { ProjectProvider } from "./context/ProjectContext";
 import Sidebar from "./components/Sidebar";
-import Topbar from "./components/Topbar";
-import MainArea from "./components/MainArea";
+import MainContent from "./components/MainContent";
+import StatusBar from "./components/StatusBar";
 
-const App = () => {
-  const [projectName, setProjectName] = useState("");
-  const [selectedField, setSelectedField] = useState("");
-
+function App() {
   return (
-    <div className="flex flex-col h-screen">
-      <Topbar projectName={projectName} setProjectName={setProjectName} />
-      <div className="flex flex-1">
-        <Sidebar onSelect={setSelectedField} />
-        <MainArea selectedField={selectedField} />
+    <ProjectProvider>
+      <div className="flex flex-col h-screen">
+        <StatusBar />
+        <div className="flex flex-1">
+          <Sidebar />
+          <MainContent />
+        </div>
       </div>
-    </div>
+    </ProjectProvider>
   );
-};
+}
 
 export default App;
